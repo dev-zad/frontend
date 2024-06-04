@@ -12,6 +12,10 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "placehold.co",
             },
+            {
+                protocol: "https",
+                hostname: "abundant-book-1882e0841b.media.strapiapp.com",
+            }
         ],
     },
 };
