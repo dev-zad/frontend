@@ -4,7 +4,7 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "http",
-                hostname: "localhost",
+                hostname: "127.0.0.1",
                 port: "1337",
                 pathname: "/uploads/**/*",
             },
@@ -12,10 +12,6 @@ const nextConfig = {
                 protocol: "https",
                 hostname: "placehold.co",
             },
-            {
-                protocol: "https",
-                hostname: "abundant-book-1882e0841b.media.strapiapp.com",
-            }
         ],
     },
 };
