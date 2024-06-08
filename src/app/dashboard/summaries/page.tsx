@@ -1,62 +1,41 @@
-import Link from "next/link";
-import { getSummaries } from "@/data/loaders";
-import { Search } from "@/components/custom/Search";
-import { PaginationComponent } from "@/components/custom/PaginationComponent";
+"use client";
+import React, { useState } from 'react';
+import PostList from "@/components/posts/PostList";
+import PostForm from '@/components/posts/PostForm';
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
-interface LinkCardProps {
-  id: string;
-  title: string;
-  summary: string;
+interface Post {
+  avatar: string;
+  name: string;
+  username: string;
+  content: string;
+  image: string;
+  poll: string[];
+  schedule: Date | null;
+  location: string;
+  timestamp: Date;
 }
 
-function LinkCard({ id, title, summary }: Readonly<LinkCardProps>) {
-  return (
-    <Link href={`/dashboard/summaries/${id}`}>
-      <Card className="relative">
-        <CardHeader>
-          <CardTitle className="leading-8 text-pink-500">
-            {title || "Video Summary"}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="w-full mb-4 leading-7">
-            {summary.slice(0, 164) + " [read more]"}
-          </p>
-        </CardContent>
-      </Card>
-    </Link>
-  );
-}
+export default async function AccountRoute() {
+  const [posts, setPosts] = useState<Post[]>([]);
 
-interface SearchParamsProps {
-  searchParams?: {
-    query?: string;
-    page?: string;
+  const addPost = (content: string, image: string, poll: string[], schedule: Date | null, location: string) => {
+    const newPost: Post = {
+      avatar: '/assets/avatar.png',
+      name: 'John Doe',
+      username: 'johndoe',
+      content,
+      image,
+      poll,
+      schedule,
+      location,
+      timestamp: new Date(),
+    };
+    setPosts([newPost, ...posts]);
   };
-}
-
-
-export default async function SummariesRoute({
-  searchParams
-}: Readonly<SearchParamsProps>) {
-  const query = searchParams?.query ?? "";
-  const currentPage = Number(searchParams?.page) || 1;
-
-  const { data, meta } = await getSummaries(query, currentPage);
-  const pageCount = meta.pagination.pageCount;
-
-  if (!data) return null;
   return (
-    <div className="grid grid-cols-1 gap-4 p-4">
-      <Search />
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {data.map((item: LinkCardProps) => (
-          <LinkCard key={item.id} {...item} />
-        ))}
-      </div>
-      <PaginationComponent pageCount={pageCount} />
+    <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 p-4">
+      <PostForm addPost={addPost} />
+      <PostList posts={posts} />
     </div>
   );
 }

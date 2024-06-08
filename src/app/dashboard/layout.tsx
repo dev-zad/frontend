@@ -35,6 +35,13 @@ export default function DashboardLayout({
                 <UsersIcon className="h-4 w-4" />
                 Account
               </Link>
+              <Link
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                href="/dashboard/homepage"
+              >
+                <UsersIcon className="h-4 w-4" />
+                Connects
+              </Link>
             </nav>
           </div>
         </div>
@@ -66,25 +73,7 @@ function LayoutDashboardIcon(props: any) {
   );
 }
 
-function PieChartIcon(props: any) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
-      <path d="M22 12A10 10 0 0 0 12 2v10z" />
-    </svg>
-  );
-}
+
 
 function UsersIcon(props: any) {
   return (
@@ -126,6 +115,15 @@ function ViewIcon(props: any) {
       <path d="M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
       <path d="M21 17v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2" />
       <path d="M21 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2" />
+    </svg>
+  );
+}
+
+function HomeIcon(props: any) {
+  return (
+    <svg width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 14L12 14M12 14L9 14M12 14L12 11M12 14L12 17" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
+      <path d="M22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" />
     </svg>
   );
 }

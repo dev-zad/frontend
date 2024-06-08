@@ -18,6 +18,7 @@ interface HeroSectionProps {
   data: {
     id: number;
     __component: string;
+    overline: string;
     heading: string;
     subHeading: string;
     image: ImageProps;
@@ -26,7 +27,7 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ data }: Readonly<HeroSectionProps>) {
-  const { heading, subHeading, image, link } = data;
+  const { overline, heading, subHeading, image, link } = data;
 
   return (
     <header className="relative h-[600px] overflow-hidden">
