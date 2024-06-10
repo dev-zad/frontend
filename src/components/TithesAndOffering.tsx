@@ -3,9 +3,10 @@ import React from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Legend, Tooltip } from 'recharts';
 import { Typography } from './Typography';
 
+// TithesAndOfferingsChart component
 interface TithesAndOfferingsChartProps {
-  tithesData: { label: string, value: number, date: string }[];
-  offeringsData: { label: string, value: number, date: string }[];
+  tithesData: { label: string, value: number, date?: string }[]; // Make date property optional
+  offeringsData: { label: string, value: number, date?: string }[]; // Make date property optional
 }
 
 const TithesAndOfferingsChart: React.FC<TithesAndOfferingsChartProps> = ({ tithesData, offeringsData }) => {
@@ -23,7 +24,6 @@ const TithesAndOfferingsChart: React.FC<TithesAndOfferingsChartProps> = ({ tithe
               height={300}
               margin={{ top: 5, right: 30, left: 10, bottom: 5 }}
             >
-              {/* <CartesianGrid stroke="#ccc" /> */}
               <XAxis dataKey="date" />
               <YAxis />
               <Tooltip />
