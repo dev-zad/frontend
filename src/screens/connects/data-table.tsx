@@ -41,7 +41,8 @@ interface DataTableProps<TData extends SelectedRow | null, TValue> {
 }
 
 
-export function DataTable<TData, TValue>({
+
+export function DataTable<TData extends SelectedRow | null, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>) {
@@ -50,7 +51,7 @@ export function DataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
   const [isOpen, setIsOpen] = useState(false); // State to manage the dialog
-  const [selectedRow, setSelectedRow] = useState<TData | null>(null);
+  const [selectedRow, setSelectedRow] = useState<SelectedRow | null>(null);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const table = useReactTable({
