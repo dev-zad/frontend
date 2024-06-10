@@ -36,7 +36,7 @@ const variantClassName = {
   `,
     paragraph_xs: "text-[12px] leading-6 font-inter",
     paragraph_sm: "text-[14px] leading-6 font-inter",
-    paragraph_md: "text-[16px] leading-8 font-inter",
+    paragraph_md: "text-[16px] leading-6 font-inter",
     paragraph_lg: "text-[18px] leading-8 font-inter",
     paragraph_xl: "text-[24px] leading-10 font-inter",
 
