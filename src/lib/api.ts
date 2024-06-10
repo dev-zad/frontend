@@ -11,7 +11,7 @@ export const fetchTithesData = async () => {
             date: item.attributes.date || '', // Add the date property with a fallback value
         }));
         return transformedData;
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error fetching tithes data:', error.response?.data || error.message);
         throw error;
     }
@@ -27,7 +27,7 @@ export const fetchOfferingsData = async () => {
             date: item.attributes.date || '', // Add the date property with a fallback value
         }));
         return transformedData;
-    } catch (error) {
+    } catch (error: any) {
         console.error('Error fetching offerings data:', error.response?.data || error.message);
         throw error;
     }
