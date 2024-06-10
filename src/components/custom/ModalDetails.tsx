@@ -22,7 +22,6 @@ interface ModalProps {
 
 export function ModalDetails({ selectedRow }: ModalProps) {
   const [modal2Open, setModal2Open] = useState(false);
-  console.log(selectedRow);
 
   return (
     <div>

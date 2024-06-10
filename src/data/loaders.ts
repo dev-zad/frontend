@@ -4,7 +4,7 @@ import { getAuthToken } from "../pages/api/get-token";
 import { flattenAttributes, getStrapiURL } from "@/lib/utils";
 
 const baseUrl = getStrapiURL();
-console.log(baseUrl);
+// console.log(baseUrl);
 
 
 async function fetchData(url: string) {
@@ -20,9 +20,9 @@ async function fetchData(url: string) {
   };
 
   try {
-    console.log(url);
-    console.log(authToken);
-    console.log(headers);
+    // console.log(url);
+    // console.log(authToken);
+    // console.log(headers);
 
     const response = await fetch(url, authToken ? headers : {});
     const data = await response.json();
@@ -66,7 +66,7 @@ export async function getHomePageData() {
 export async function getGlobalPageData() {
 
   const url = new URL("/api/global", baseUrl);
-  console.log(url.href);
+  // console.log(url.href);
 
 
   url.search = qs.stringify({
@@ -80,7 +80,7 @@ export async function getGlobalPageData() {
   // console.log(url.href);
 
   const data = await fetchData(url.href);
-  console.log(data);
+  // console.log(data);
 
   // return data;
   return await fetchData(url.href);

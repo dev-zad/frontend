@@ -41,7 +41,6 @@ export function ProfileImageForm({
     initialState
   );
 
-  console.log(data);
 
   return (
     <form className={cn("space-y-4", className)} action={formAction}>
