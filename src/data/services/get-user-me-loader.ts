@@ -1,4 +1,4 @@
-import { getAuthToken } from "./get-token";
+import { getAuthToken } from "../../pages/api/get-token";
 import { getStrapiURL } from "@/lib/utils";
 import qs from "qs";
 

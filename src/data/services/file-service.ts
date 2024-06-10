@@ -1,4 +1,4 @@
-import { getAuthToken } from "@/data/services/get-token";
+import { getAuthToken } from "@/pages/api/get-token";
 import { mutateData } from "@/data/services/mutate-data";
 import { flattenAttributes } from "@/lib/utils";
 import { getStrapiURL } from "@/lib/utils";

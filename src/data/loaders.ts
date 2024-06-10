@@ -1,5 +1,5 @@
 import qs from "qs";
-import { getAuthToken } from "./services/get-token";
+import { getAuthToken } from "../pages/api/get-token";
 
 import { flattenAttributes, getStrapiURL } from "@/lib/utils";
 

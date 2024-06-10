@@ -1,4 +1,4 @@
-import { getAuthToken } from "./get-token";
+import { getAuthToken } from "../../pages/api/get-token";
 import { getStrapiURL } from "@/lib/utils";
 
 export async function mutateData(method: string, path: string, payload?: any) {
