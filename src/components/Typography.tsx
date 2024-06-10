@@ -23,12 +23,12 @@ export function Typography(props: TypographyProps) {
 
 const variantClassName = {
 
-    h6: "lg:text-[20px] lg:leading-[32px] text-[18px] leading-[24px] font-anton",
-    h5: "lg:text-[26px] lg:leading-[40px] text-[20px] leading-[32px] font-anton",
-    h4: "lg:text-[34px] lg:leading-[48px] text-[24px] leading-[32px] font-anton",
-    h3: "lg:text-[40px] lg:leading-[56px] text-[28px] leading-[40px] font-anton",
-    h2: "lg:text-[46px] lg:leading-[64px] text-[32px] leading-[40px] font-anton",
-    h1: "lg:text-[86px] lg:leading-[128px] text-[36px] leading-[48px] font-anton",
+    h6: "lg:text-[20px] lg:leading-[32px] text-[18px] leading-[24px] text-[#3D3D3D] font-anton",
+    h5: "lg:text-[26px] lg:leading-[40px] text-[20px] leading-[32px] text-[#3D3D3D] font-anton",
+    h4: "lg:text-[34px] lg:leading-[48px] text-[24px] leading-[32px] text-[#3D3D3D] font-anton",
+    h3: "lg:text-[40px] lg:leading-[56px] text-[28px] leading-[40px] text-[#3D3D3D] font-anton",
+    h2: "lg:text-[46px] lg:leading-[64px] text-[32px] leading-[40px] text-[#3D3D3D] font-anton",
+    h1: "lg:text-[86px] lg:leading-[128px] text-[36px] leading-[48px] text-[#3D3D3D] font-anton",
     stronger: "lg:text-[180px] text-[36px] lg:leading-[328px] leading-[48px] font-anton",
 
     paragraph: `
@@ -45,5 +45,5 @@ const variantClassName = {
   font-inter uppercase font-medium
   `,
 
-    overline: "text-[14px] lg:text-[16px] leading-[24px] font-bold tracking-[3.2px] font-inter uppercase",
+    overline: "text-[14px] lg:text-[16px] text-[#3D3D3D] leading-[24px] font-bold tracking-[3.2px] font-inter uppercase",
 };

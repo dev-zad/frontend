@@ -11,6 +11,7 @@ export type Connected = {
   status: "pending" | "processing" | "success" | "failed";
   email: string;
   name: string;
+  gender: string;
   leader: string;
   tribe: string;
 };
@@ -72,6 +73,14 @@ export const columns: ColumnDef<Connected>[] = [
     header: "Name",
   },
   {
+    accessorKey: "number",
+    header: "Number",
+  },
+  {
+    accessorKey: "gender",
+    header: "Gender",
+  },
+  {
     accessorKey: "leader",
     header: "Leader",
   },
@@ -79,18 +88,18 @@ export const columns: ColumnDef<Connected>[] = [
     accessorKey: "tribe",
     header: "Tribe",
   },
-  {
-    accessorKey: "message",
-    header: "Prayer Request",
-    cell: ({ row }) => {
-      const message = row.getValue<string>("message");
-      const truncatedMessage = truncateMessage(message, 50);
-      const id = row.getValue<string>("id");
-      return (
-        <Link href={`/messages/${id}`}>
-          <div className="font-semibold hover:underline cursor-pointer">{truncatedMessage}</div>
-        </Link>
-      );
-    },
-  },
+  // {
+  //   accessorKey: "message",
+  //   header: "Prayer Request",
+  //   cell: ({ row }) => {
+  //     const message = row.getValue<string>("message");
+  //     const truncatedMessage = truncateMessage(message, 50);
+  //     const id = row.getValue<string>("id");
+  //     return (
+  //       <Link href={`/messages/${id}`}>
+  //         <div className="font-semibold hover:underline cursor-pointer">{truncatedMessage}</div>
+  //       </Link>
+  //     );
+  //   },
+  // },
 ];

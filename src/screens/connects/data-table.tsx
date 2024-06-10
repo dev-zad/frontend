@@ -30,11 +30,16 @@ import {
 } from "@/components/ui/table";
 import LifeButton from "@/components/ui/lgButton";
 import ProfileFormContent from "./modal/ProfileFormContent";
+import { ModalDetails } from "@/components/custom/ModalDetails";
+import { SelectedRow } from "@/components/custom/ModalDetails";
+import { DialogDetails } from "@/components/custom/DialogDetails";
+import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 
-interface DataTableProps<TData, TValue> {
+interface DataTableProps<TData extends SelectedRow | null, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
+
 
 export function DataTable<TData, TValue>({
   columns,
@@ -45,6 +50,8 @@ export function DataTable<TData, TValue>({
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = useState({});
   const [isOpen, setIsOpen] = useState(false); // State to manage the dialog
+  const [selectedRow, setSelectedRow] = useState<TData | null>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const table = useReactTable({
     data,
@@ -64,11 +71,9 @@ export function DataTable<TData, TValue>({
       rowSelection,
     },
   });
-  console.log(data);
-
 
   return (
-    <div>
+    <div className="overflow-x-auto">
       <div className="flex items-center py-4 gap-2">
         <Input
           placeholder="Filter emails..."
@@ -109,7 +114,7 @@ export function DataTable<TData, TValue>({
         {table.getFilteredRowModel().rows.length} row(s) selected.
 
       </div>
-      <div className="rounded-md border">
+      <div className="rounded-md border overflow-hidden">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -127,18 +132,24 @@ export function DataTable<TData, TValue>({
               </TableRow>
             ))}
           </TableHeader>
+
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  onClick={() => {
+                    setSelectedRow(row);
+                    setIsSidebarOpen(true);
+                  }}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </TableCell>
                   ))}
+
                 </TableRow>
               ))
             ) : (
@@ -150,6 +161,14 @@ export function DataTable<TData, TValue>({
             )}
           </TableBody>
         </Table>
+        {/* Render the Dialog component only when there is a selected row */}
+        {selectedRow && (
+          <DialogDetails
+            selectedRow={selectedRow}
+            isOpen={isSidebarOpen}
+            setOpen={setIsSidebarOpen}
+          />
+        )}
         <div className="flex items-center justify-end space-x-2 py-4 px-4">
           <Button
             variant="outline"
@@ -169,6 +188,9 @@ export function DataTable<TData, TValue>({
           </Button>
         </div>
       </div>
+
+
+
     </div>
   );
 }

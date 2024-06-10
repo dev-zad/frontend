@@ -7,7 +7,10 @@ export type Message = {
     id: number;
     email: string;
     name: string;
+    number: number;
+    gender: string;
     message: string;
+
 };
 export async function readMessages() {
     try {
