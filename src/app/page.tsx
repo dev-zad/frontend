@@ -1,6 +1,7 @@
 import qs from "qs";
 import { HeroSection } from "@/components/custom/HeroSection";
 import { flattenAttributes } from "@/lib/utils";
+import { FeatureSection } from "@/components/custom/FeaturesSection";
 
 const homePageQuery = qs.stringify({
   populate: {
@@ -44,6 +45,7 @@ export default async function Home() {
     <main>
 
       <HeroSection data={blocks[0]} />
+      <FeatureSection data={blocks[0]} />
     </main>
   );
 }

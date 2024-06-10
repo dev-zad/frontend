@@ -1,52 +1,38 @@
-import Link from "next/link";
-import { StrapiImage } from "@/components/custom/StrapiImage";
+"use client";
+import { Typography } from "@/components/Typography";
+import { AuroraBackground } from "../ui/aurora-background";
+import { motion } from 'framer-motion';
 
-interface ImageProps {
-    id: number;
-    url: string;
-    alternativeText: string;
-}
+export function HeroSection({ data }: { readonly data: any }) {
+  console.dir(data, { depth: null });
+  return (
+    <AuroraBackground>
+      <motion.div
+        initial={{ opacity: 0.0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}
+        className="relative flex lg:flex-row flex-col  items-center justify-center px-4 lg:py-0"
+      >
+        <div className=" flex lg:flex-row flex-col justify-between lg:px-40 md:px-10 px-4 lg:py-[200px] md:py-2 py-4">
+          <div className="flex flex-col lg:py-0">
+            <Typography variant="overline" className="lg:text-start md:text-center text-start">His life metro</Typography> {/* overline */}
+            <Typography variant="h1" className="flex "> {/* heading */}
+              LOVE GOD.<br className="lg:block md:hidden block" /> MAKE DISCIPLES.<br className="lg:block md:hidden" /> IMPACT OUR WORLD.
+            </Typography>
+            <Typography variant='paragraph_md' className=""> {/* subHeading */}
+              This is how we know what love is: Jesus Christ laid down his life for us.
+              And we ought to <br className="lg:block hidden " /> lay down our lives for our brothers and sisters.
+              <br />- 1 John 3:16 (NIV)
+            </Typography>
+          </div>
+        </div>
+        <img className={`py-2 px-4`} src="/uploads/hislife.png" alt="Description of the image" /> {/* image */}
+      </motion.div>
+    </AuroraBackground >
 
-interface LinkProps {
-    id: number;
-    url: string;
-    text: string;
-
-}
-
-interface HeroSectionProps {
-    data: {
-        id: number;
-        __component: string;
-        heading: string;
-        subHeading: string;
-        image: ImageProps;
-        link: LinkProps;
-    }
-}
-
-export function HeroSection({ data }: Readonly<HeroSectionProps>) {
-    // console.dir(data, { depth: null });
-    const { heading, subHeading, image, link } = data;
-
-    return (
-        <header className="relative h-[600px] overflow-hidden">
-            <StrapiImage
-                alt="Background"
-                className="absolute inset-0 object-cover w-full h-full"
-                height={1080}
-                src={image.url}
-                width={1920}
-            />
-            <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white bg-black bg-opacity-20">
-                <h1 className="text-4xl font-bold md:text-5xl lg:text-6xl">
-                    {heading}
-                </h1>
-                <p className="mt-4 text-lg md:text-xl lg:text-2xl">
-                    {subHeading}
-                </p>
-
-            </div>
-        </header>
-    );
+  );
 }
