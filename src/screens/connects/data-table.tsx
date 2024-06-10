@@ -30,30 +30,20 @@ import {
 } from "@/components/ui/table";
 import LifeButton from "@/components/ui/lgButton";
 import ProfileFormContent from "./modal/ProfileFormContent";
-import { ModalDetails } from "@/components/custom/ModalDetails";
-import { SelectedRow } from "@/components/custom/ModalDetails";
-import { DialogDetails } from "@/components/custom/DialogDetails";
-import { Dialog, DialogTrigger, DialogContent } from "@/components/ui/dialog";
 
-interface DataTableProps<TData extends SelectedRow | null, TValue> {
-  columns: ColumnDef<TData, TValue>[];
+export interface DataTableProps<TData> {
+  columns: ColumnDef<TData, any>[];
   data: TData[];
 }
 
-
-
-export function DataTable<TData extends SelectedRow | null, TValue>({
+export function DataTable<TData>({
   columns,
   data,
-}: DataTableProps<TData, TValue>) {
+}: DataTableProps<TData>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = useState({});
-  const [isOpen, setIsOpen] = useState(false); // State to manage the dialog
-  const [selectedRow, setSelectedRow] = useState<SelectedRow | null>(null);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
+  const [isOpen, setIsOpen] = useState(false);
   const table = useReactTable({
     data,
     columns,
@@ -64,12 +54,10 @@ export function DataTable<TData extends SelectedRow | null, TValue>({
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     onColumnVisibilityChange: setColumnVisibility,
-    onRowSelectionChange: setRowSelection,
     state: {
       sorting,
       columnFilters,
       columnVisibility,
-      rowSelection,
     },
   });
 
@@ -85,8 +73,7 @@ export function DataTable<TData extends SelectedRow | null, TValue>({
           className="max-w-sm"
         />
         <LifeButton label="Add" variant="default" open={isOpen} setOpen={setIsOpen} />
-        {isOpen && <ProfileFormContent open={isOpen} setOpen={setIsOpen} />}
-      </div>
+        {isOpen && <ProfileFormContent open={isOpen} setOpen={setIsOpen} />}      </div>
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -110,11 +97,6 @@ export function DataTable<TData extends SelectedRow | null, TValue>({
             ))}
         </DropdownMenuContent>
       </DropdownMenu>
-      <div className="flex-1 text-sm text-muted-foreground">
-        {table.getFilteredSelectedRowModel().rows.length} of{" "}
-        {table.getFilteredRowModel().rows.length} row(s) selected.
-
-      </div>
       <div className="rounded-md border overflow-hidden">
         <Table>
           <TableHeader>
@@ -137,20 +119,15 @@ export function DataTable<TData extends SelectedRow | null, TValue>({
           <TableBody>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                  onClick={() => {
-                    setSelectedRow(row);
-                    setIsSidebarOpen(true);
-                  }}
-                >
+                <TableRow key={row.id}>
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
                     </TableCell>
                   ))}
-
                 </TableRow>
               ))
             ) : (
@@ -162,36 +139,7 @@ export function DataTable<TData extends SelectedRow | null, TValue>({
             )}
           </TableBody>
         </Table>
-        {/* Render the Dialog component only when there is a selected row */}
-        {selectedRow && (
-          <DialogDetails
-            selectedRow={selectedRow}
-            isOpen={isSidebarOpen}
-            setOpen={setIsSidebarOpen}
-          />
-        )}
-        <div className="flex items-center justify-end space-x-2 py-4 px-4">
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}
-          >
-            Previous
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}
-          >
-            Next
-          </Button>
-        </div>
       </div>
-
-
-
     </div>
   );
 }
