@@ -1,61 +1,44 @@
-import Link from "next/link";
-import { StrapiImage } from "@/components/custom/StrapiImage";
-import { getUserMeLoader } from "@/data/services/get-user-me-loader";
+import { Typography } from "@/components/Typography";
+import { AuroraBackground } from "../ui/aurora-background";
+import { motion } from 'framer-motion';
 
+export function HeroSection({ data }: { readonly data: any }) {
+  // Kunin ang data ng HeroSection mula sa API response
+  const heroSectionData = data.attributes.blocks.find((block: any) => block.__component === "layout.hero-section");
 
-interface ImageProps {
-  id: number;
-  url: string;
-  alternativeText: string;
-}
-
-interface LinkProps {
-  id: number;
-  url: string;
-  text: string;
-
-}
-
-interface HeroSectionProps {
-  data: {
-    id: number;
-    __component: string;
-    heading: string;
-    subHeading: string;
-    image: ImageProps;
-    link: LinkProps;
+  // Siguraduhing mayroong data para sa HeroSection
+  if (!heroSectionData) {
+    return null; // Iwasan ang pag-render ng component kung walang available na data
   }
-}
 
-export async function HeroSection({ data }: Readonly<HeroSectionProps>) {
-  const { heading, subHeading, image, link } = data;
-
-  const user = await getUserMeLoader();
-  const linkUrl = user.ok ? "/dashboard" : link.url;
+  // Kunin ang mga kinakailangang impormasyon para sa HeroSection
+  const { heading, subHeading, overline } = heroSectionData;
 
   return (
-    <header className="relative h-[600px] overflow-hidden">
-      <StrapiImage
-        alt="Background"
-        className="absolute inset-0 object-cover w-full h-full"
-        height={1080}
-        src={image.url}
-        width={1920}
-      />
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white bg-black bg-opacity-20">
-        <h1 className="text-4xl font-bold md:text-5xl lg:text-6xl">
-          {heading}
-        </h1>
-        <p className="mt-4 text-lg md:text-xl lg:text-2xl">
-          {subHeading}
-        </p>
-        <Link
-          className="mt-8 inline-flex items-center justify-center px-6 py-3 text-base font-medium text-black bg-white rounded-md shadow hover:bg-gray-100"
-          href={linkUrl}
-        >
-          {user.ok ? "Go to Dashboard" : link.text}
-        </Link>
-      </div>
-    </header>
+    <AuroraBackground>
+      <motion.div
+        initial={{ opacity: 0.0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{
+          delay: 0.3,
+          duration: 0.8,
+          ease: "easeInOut",
+        }}
+        className="relative flex lg:flex-row flex-col  items-center justify-center px-4 lg:py-0"
+      >
+        <div className=" flex lg:flex-row flex-col justify-between lg:px-40 md:px-10 px-4 lg:py-[200px] md:py-2 py-4">
+          <div className="flex flex-col lg:py-0">
+            <Typography variant="overline" className="lg:text-start md:text-center text-start">{overline}</Typography> {/* overline */}
+            <Typography variant="h1" className="flex ">{/* heading */}
+              {heading}
+            </Typography>
+            <Typography variant='paragraph_md' className="">{/* subHeading */}
+              {subHeading}
+            </Typography>
+          </div>
+        </div>
+        <img className={`py-2 px-4`} src="/uploads/hislife.png" alt="Description of the image" /> {/* image */}
+      </motion.div>
+    </AuroraBackground >
   );
 }
