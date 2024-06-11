@@ -15,9 +15,9 @@ export function HeroSection({ data }: { readonly data: any }) {
           duration: 0.8,
           ease: "easeInOut",
         }}
-        className="relative flex lg:flex-row flex-col  items-center justify-center px-4"
+        className="relative flex xl:flex-row lg:flex-col flex-col  items-center justify-center px-4 gap-20"
       >
-        <div className=" flex lg:flex-row flex-col justify-between lg:px-40 md:px-10 px-4 lg:py-[200px] md:py-2 py-4">
+        <div className=" flex lg:flex-row flex-col  px-4 lg:py-[200px] md:py-2 py-4">
           <div className="flex flex-col">
             <Typography variant="overline" className="lg:text-start md:text-center text-start">His life metro</Typography> {/* overline */}
             <Typography variant="h1" className="flex "> {/* heading */}
@@ -30,9 +30,10 @@ export function HeroSection({ data }: { readonly data: any }) {
             </Typography>
           </div>
         </div>
-        <img className={`px-4`} src="/uploads/hislife.png" alt="Description of the image" /> {/* image */}
+        <div className="flex">
+          <img className={`px-4`} src="/uploads/hislife.png" alt="Description of the image" /> {/* image */}
+        </div>
       </motion.div>
     </AuroraBackground >
-
   );
 }

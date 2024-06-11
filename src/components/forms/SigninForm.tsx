@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { useFormState } from "react-dom";
 import { loginUserAction } from "@/data/actions/auth-actions";
@@ -18,6 +19,7 @@ import { Input } from "@/components/ui/input";
 import { ZodErrors } from "@/components/custom/ZodErrors";
 import { StrapiErrors } from "@/components/custom/StrapiErrors";
 import { SubmitButton } from "@/components/custom/SubmitButton";
+import { Modal } from "../custom/Modal";
 
 const INITIAL_STATE = {
   zodErrors: null,
@@ -28,6 +30,15 @@ const INITIAL_STATE = {
 
 export function SigninForm() {
   const [formState, formAction] = useFormState(loginUserAction, INITIAL_STATE);
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleSignupClick = (event: React.MouseEvent) => {
+    event.preventDefault();
+    setModalOpen(true);
+  };
+
+  const closeModal = () => setModalOpen(false);
+
   return (
     <div className="w-full max-w-md">
       <form action={formAction}>
@@ -71,11 +82,12 @@ export function SigninForm() {
         </Card>
         <div className="mt-4 text-center text-sm">
           Don&apos;t have an account?
-          <Link className="underline ml-2" href="signup">
+          <a className="underline ml-2 cursor-pointer" onClick={handleSignupClick}>
             Sign Up
-          </Link>
+          </a>
         </div>
       </form>
+      <Modal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 }
