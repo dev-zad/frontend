@@ -1,11 +1,4 @@
-interface ErrorData {
-  message: string; // Error message
-  code?: number; // Optional error code
-  details?: any; // Additional details about the error (can be any type)
-}
-
 interface StrapiErrorsProps {
-  error: ErrorData | null;
   message: string | null;
   name: string;
   status: string | null;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import {
   Card,
   CardHeader,
@@ -47,11 +47,10 @@ export function Modal({ isOpen, onClose }: ModalProps) {
       setFormState(INITIAL_STATE);
       onClose();
     } catch (error) {
-      console.error("Error submitting form:", error.response.data);
-      setFormState({ ...INITIAL_STATE, strapiErrors: error.response.data });
+      const axiosError = error as AxiosError;
+      console.error("Error submitting form:", axiosError.response?.data);
     }
   };
-
   return (
     <div className={`fixed inset-0 flex items-center justify-center overflow-auto bg-black bg-opacity-50 z-50 ${isOpen ? '' : 'hidden'}`}>
       <div className="w-full max-w-md">
@@ -115,7 +114,6 @@ export function Modal({ isOpen, onClose }: ModalProps) {
                 text="Submit"
                 loadingText="Submitting"
               />
-              <StrapiErrors error={formState?.strapiErrors} />
             </CardFooter>
           </Card>
           <div className="mt-4 text-center text-sm">
