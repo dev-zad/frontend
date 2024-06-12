@@ -40,7 +40,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             }
         });
     } else {
-        // Method Not Allowed
         return res.status(405).json({ error: 'Method Not Allowed' });
     }
 }
