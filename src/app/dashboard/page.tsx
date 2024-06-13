@@ -67,9 +67,9 @@ export default function DashboardRoute() {
           duration: 0.8,
           ease: "easeInOut",
         }}
-        className="relative flex lg:flex-row flex-col lg:py-0"
+        className="relative flex lg:flex-row flex-col "
       >
-        <div className="px-4 py-10">
+        <div className="px-20 py-40">
           <Typography variant="h2">Dashboard</Typography>
           <div className='flex flex-row gap-4'>
             <TithesAndOfferingsChart tithesData={tithesData} offeringsData={offeringsData} />
