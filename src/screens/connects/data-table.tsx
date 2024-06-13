@@ -73,7 +73,8 @@ export function DataTable<TData>({
           className="max-w-sm"
         />
         <LifeButton label="Add" variant="default" open={isOpen} setOpen={setIsOpen} />
-        {isOpen && <ProfileFormContent open={isOpen} setOpen={setIsOpen} />}      </div>
+        {isOpen && <ProfileFormContent open={isOpen} setOpen={setIsOpen} />}
+      </div>
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>

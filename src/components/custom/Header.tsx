@@ -45,7 +45,7 @@ export async function Header({ data }: Readonly<HeaderProps>) {
 
   const { logoText, ctaButton } = data;
   return (
-    <div className="flex items-center justify-between px-4 py-3 bg-white shadow-full dark:bg-gray-800">
+    <div className="flex items-center justify-between border px-4 py-3 bg-white shadow-full dark:bg-gray-800">
       <Logo text={logoText.text} />
       <div className="flex items-center gap-4">
         {user.ok ? (

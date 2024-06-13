@@ -20,7 +20,7 @@ const homePageQuery = qs.stringify({
 
 async function getStrapiData(path: string) {
   const baseUrl = "https://abundant-book-1882e0841b.strapiapp.com";
-  console.log('baseUrl', baseUrl);
+  // console.log('baseUrl', baseUrl);
 
   const url = new URL(path, baseUrl);
   url.search = homePageQuery;
