@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 
-const STRAPI_API_URL = process.env.STRAPI_API_URL || 'https://backend-49sv.onrender.com';
+const STRAPI_API_URL = process.env.STRAPI_API_URL || 'https://abundant-book-1882e0841b.strapiapp.com';
 const STRAPI_API_TOKEN = process.env.STRAPI_API_TOKEN;
 
 if (!STRAPI_API_URL || !STRAPI_API_TOKEN) {

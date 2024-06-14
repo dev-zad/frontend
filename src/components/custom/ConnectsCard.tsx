@@ -7,7 +7,7 @@ export function ConnectsCard() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    fetch('https://backend-49sv.onrender.com//api/messages?populate=*')
+    fetch('http://127.0.0.1:1337/api/messages?populate=*')
       .then(response => response.json())
       .then(data => {
         if (data && data.data && data.data.length > 0) {
@@ -34,7 +34,7 @@ export function ConnectsCard() {
           <div className='flex flex-row items-center'>
             {profile.attributes.profile_picture?.data ? (
               <img
-                src={`https://backend-49sv.onrender.com:1337${profile.attributes.profile_picture.data.attributes.url}`}
+                src={`http://127.0.0.1:1337${profile.attributes.profile_picture.data.attributes.url}`}
                 alt={`${profile.attributes.name}'s profile`}
                 className="w-12 h-12 rounded-full mr-4"
               />
