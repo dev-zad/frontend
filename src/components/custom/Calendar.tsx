@@ -20,7 +20,7 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
     const dateFormat = 'MMMM yyyy';
 
     return (
-      <div className="flex justify-between items-center p-4 w-full">
+      <div className="flex justify-between items-center p-4 ">
         <div className="flex items-center">
           <button
             onClick={() => setCurrentMonth(subMonths(currentMonth, 1))}
@@ -87,7 +87,7 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
     }
 
     return (
-      <div className="mt-2 space-y-2">
+      <div className=" space-y-2">
         {filteredEvents.map((event) => {
           const eventDate = parseISO(event.date);
           const isEventPast = isBefore(eventDate, new Date()); // Check if event date is before today

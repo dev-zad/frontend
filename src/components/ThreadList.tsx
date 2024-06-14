@@ -9,39 +9,28 @@ export interface Thread {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
+  author: any; // Adjust this type as per your actual data structure
 }
 
 interface ThreadListProps {
   threads: Thread[];
 }
 
-const ThreadList: React.FC<ThreadListProps> = ({ threads: propThreads }) => {
-  const [localThreads, setLocalThreads] = useState<Thread[]>([]);
-
-  useEffect(() => {
-    const fetchThreads = async () => {
-      try {
-        const response = await fetch('/api/threads');
-        if (!response.ok) {
-          throw new Error('Failed to fetch threads');
-        }
-        const data = await response.json();
-        setLocalThreads(data.data); // Assuming your API returns { data: threadList }
-      } catch (error) {
-        console.error('Error fetching threads:', error);
-      }
-    };
-
-    fetchThreads();
-  }, []);
-
+const ThreadList: React.FC<ThreadListProps> = ({ threads }) => {
   return (
     <div className="rounded-lg bg-white w-full">
       <ul>
-        {propThreads.map(thread => (
+        {threads.map(thread => (
           <li key={thread.id} className="border-b border-gray-200 flex flex-col">
             <Typography variant='paragraph' className='py-2'>{thread.title}</Typography>
             <Typography variant='paragraph_md' className='py-2'>{thread.content}</Typography>
+            <Typography variant='paragraph' className='py-2'>Created At: {new Date(thread.createdAt).toLocaleString()}</Typography>
+            <Typography variant='paragraph' className='py-2'>Updated At: {new Date(thread.updatedAt).toLocaleString()}</Typography>
+            <Typography variant='paragraph' className='py-2'>Published At: {new Date(thread.publishedAt).toLocaleString()}</Typography>
+            {/* Example: Display author */}
+            {thread.author && (
+              <Typography variant='paragraph' className='py-2'>Author: {thread.author.name}</Typography>
+            )}
           </li>
         ))}
       </ul>

@@ -1,7 +1,7 @@
 // data/services/get-threads-loader.ts
 export async function getThreadsLoader() {
     try {
-        const response = await fetch("http://127.0.0.1:1337/api/threads");
+        const response = await fetch("/api/threads");
         if (!response.ok) {
             console.error(`Error: ${response.status} ${response.statusText}`);
             throw new Error("Failed to fetch threads");
