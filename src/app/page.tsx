@@ -19,7 +19,7 @@ const homePageQuery = qs.stringify({
 });
 
 async function getStrapiData(path: string) {
-  const baseUrl = "https://abundant-book-1882e0841b.strapiapp.com";
+  const baseUrl = "https://backend-49sv.onrender.com/";
   // console.log('baseUrl', baseUrl);
 
   const url = new URL(path, baseUrl);

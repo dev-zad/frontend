@@ -1,13 +1,10 @@
-// components/forms/ThreadForm.tsx
-
 import React, { useState } from "react";
-import { useForm } from "react-hook-form"; // Correct import for useForm
+import { useForm } from "react-hook-form";
 import { createThreadAction } from "@/data/actions/thread-actions";
 import { cn } from "@/lib/utils";
 import { SubmitButton } from "@/components/custom/SubmitButton";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { StrapiErrors } from "@/components/custom/StrapiErrors";
 
 type ThreadFormData = {
   title: string;
@@ -16,14 +13,19 @@ type ThreadFormData = {
 
 export const ThreadForm: React.FC<{ className?: string }> = ({ className }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<ThreadFormData>();
-  const [strapiErrors, setStrapiErrors] = useState<string | undefined>(undefined);
+  const [errorMessage, setErrorMessage] = useState<string | undefined>(undefined);
 
   const onSubmit = async (data: ThreadFormData) => {
     try {
-      const { message, strapiErrors } = await createThreadAction(data);
-      setStrapiErrors(strapiErrors);
-    } catch (error) {
+      const { message } = await createThreadAction(data);
+      // Optionally handle success message or redirect
+    } catch (error: unknown) {
       console.error('Failed to submit form:', error);
+      if (error instanceof Error) {
+        setErrorMessage(error.message || 'Failed to create thread');
+      } else {
+        setErrorMessage('Failed to create thread');
+      }
     }
   };
 
@@ -42,6 +44,7 @@ export const ThreadForm: React.FC<{ className?: string }> = ({ className }) => {
       <div className="flex justify-end">
         <SubmitButton text="Post Thread" loadingText="Posting..." />
       </div>
+      {errorMessage && <p className="text-red-600">{errorMessage}</p>}
     </form>
   );
 };

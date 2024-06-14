@@ -5,9 +5,13 @@ interface ThreadFormData {
   content: string;
 }
 
-export const createThreadAction = async (
-  formData: ThreadFormData
-): Promise<{ data: any; message: string; strapiErrors?: string }> => {
+interface CreateThreadResponse {
+  data: any; // Adjust this as per your backend response structure
+  message: string;
+  strapiErrors?: string;
+}
+
+export const createThreadAction = async (formData: ThreadFormData): Promise<CreateThreadResponse> => {
   try {
     const response = await fetch('/api/threads', {
       method: 'POST',
@@ -31,5 +35,5 @@ export const createThreadAction = async (
     } else {
       return { data: null, message: '', strapiErrors: 'An unknown error occurred' };
     }
-  };
+  }
 };

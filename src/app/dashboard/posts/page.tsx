@@ -11,10 +11,14 @@ export default function PostsRoute() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const threadsData = await getThreadsLoader();
-                setThreads(threadsData);
+                const response = await fetch('http://127.0.0.1:1337/api/threads');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                const data = await response.json();
+                setThreads(data.data.map((thread: any) => thread.attributes)); // Extract attributes from API response
             } catch (error) {
-                console.error('Failed to fetch threads:', error);
+                console.error('Error fetching data:', error);
             }
         };
 
