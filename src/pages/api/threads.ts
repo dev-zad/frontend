@@ -9,7 +9,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             const { title, content } = req.body;
 
             // Example: Handle database operation or external API call
-            const response = await fetch('http://127.0.0.1:1337/api/threads', {
+            const response = await fetch('https://backend-49sv.onrender.com/api/threads', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
