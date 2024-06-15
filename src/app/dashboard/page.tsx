@@ -17,9 +17,7 @@ import { getThreadsLoader } from '@/data/services/get-threads-loader';
 export default function DashboardRoute() {
   const [tithesData, setTithesData] = useState<{ label: string, date: string, value: number }[]>([]);
   const [offeringsData, setOfferingsData] = useState<{ label: string, date: string, value: number }[]>([]);
-  const [events, setEvents] = useState<Event[]>([]); // State for events
   const [upcomingEvents, setUpcomingEvents] = useState<Event[]>([]); // State for upcoming events
-  const [latestThreads, setLatestThreads] = useState<Thread[]>([]); // State for latest threads
   const [threads, setThreads] = useState<Thread[]>([]);
 
   useEffect(() => {
@@ -43,7 +41,6 @@ export default function DashboardRoute() {
         const eventsData = await getEvents();
         setTithesData(tithes);
         setOfferingsData(offerings);
-        setEvents(eventsData); // Set the events data in state
 
         // Filter upcoming events (assuming upcoming means after the current date)
         const currentDate = new Date();
@@ -55,23 +52,6 @@ export default function DashboardRoute() {
     };
 
     fetchData();
-  }, []);
-
-  useEffect(() => {
-    const fetchLatestThreads = async () => {
-      try {
-        const response = await fetch('/api/threads');
-        if (!response.ok) {
-          throw new Error('Failed to fetch threads');
-        }
-        const data = await response.json();
-        setLatestThreads(data.data); // Assuming your API returns { data: threadList }
-      } catch (error) {
-        console.error('Error fetching threads:', error);
-      }
-    };
-
-    fetchLatestThreads();
   }, []);
 
   const truncate = (text: string, maxLength: number) => {
