@@ -1,6 +1,7 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Typography } from './Typography';
+import { Separator } from './ui/separator';
 
 interface TithesAndOfferingsChartProps {
   tithesData: { label: string; value: number; date?: string }[];
@@ -12,6 +13,13 @@ const TithesAndOfferingsChart: React.FC<TithesAndOfferingsChartProps> = ({ tithe
   const totalTithes = tithesData.reduce((acc, curr) => acc + curr.value, 0);
   const totalOfferings = offeringsData.reduce((acc, curr) => acc + curr.value, 0);
 
+  // Combine the data for the bar chart
+  const combinedData = tithesData.map((item, index) => ({
+    date: item.date,
+    tithes: item.value,
+    offerings: offeringsData[index] ? offeringsData[index].value : 0,
+  }));
+
   // Function to format date as "Month - Year"
   const formatDate = (date: string) => {
     const options = { month: 'long', year: 'numeric' };
@@ -21,17 +29,19 @@ const TithesAndOfferingsChart: React.FC<TithesAndOfferingsChartProps> = ({ tithe
 
   return (
     <div className='flex'>
-      <div className='flex border bg-[#F4F0FE] py-4 px-10 rounded-2xl'>
+      <div className='flex shadow bg-white py-4 px-4  rounded-2xl'>
         <div className='flex flex-row'>
           <div className='flex-grow'>
-            <LineChart width={600} height={300} >
-              <XAxis dataKey='date' tickFormatter={formatDate} />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type='monotone' data={tithesData} dataKey='value' stroke='#8884d8' strokeWidth={1} name='Tithes' />
-              <Line type='monotone' data={offeringsData} dataKey='value' stroke='#82ca9d' strokeWidth={1} name='Offerings' />
-            </LineChart>
+            <ResponsiveContainer width={600} height={300}>
+              <BarChart data={combinedData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                <XAxis dataKey='date' tickFormatter={formatDate} />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey='tithes' fill='#8884d8' name='Tithes' />
+                <Bar dataKey='offerings' fill='#82ca9d' name='Offerings' />
+              </BarChart>
+            </ResponsiveContainer>
           </div>
           <div className='flex flex-col gap-4 px-10 items-center justify-center'>
             <div className='flex flex-col'>
@@ -40,7 +50,7 @@ const TithesAndOfferingsChart: React.FC<TithesAndOfferingsChartProps> = ({ tithe
               </Typography>
               <Typography variant='paragraph_md'>{totalTithes} ₱</Typography>
             </div>
-            <hr className='border-gray-300' />
+            <Separator />
             <div className='flex flex-col'>
               <Typography variant='paragraph' className='font-bold'>
                 Offering

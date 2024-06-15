@@ -157,7 +157,7 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
           <div className="bg-white p-6 rounded-lg max-w-lg w-full ">
             <h2 className="text-lg font-semibold mb-2 ">{selectedEvent.name}</h2>
             {selectedEvent.time && <p>Time: {selectedEvent.time}</p>}
-            {selectedEvent.location && <p>Location: {selectedEvent.location}</p>}
+            {selectedEvent.location && <p>Location: <span className='underline'>{selectedEvent.location}</span></p>}
             <p>{selectedEvent.description}</p>
             <div className="mt-4 flex justify-end">
               <Button onClick={handleCloseModal}>Close</Button>
