@@ -46,7 +46,7 @@ export function flattenAttributes(data: any): any {
 }
 
 export function getStrapiURL() {
-  return process.env.NEXT_PUBLIC_STRAPI_URL ?? "https://abundant-book-1882e0841b.strapiapp.com";
+  return process.env.NEXT_PUBLIC_STRAPI_URL ?? "http://127.0.0.1:1337";
 }
 
 export function getStrapiMedia(url: string | null) {

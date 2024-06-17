@@ -80,7 +80,7 @@ export default function DashboardRoute() {
             <ConnectsCard />
           </div>
           <div className='py-4 flex flex-row'>
-            <Card className="px-4 py-4 bg-green-100 w-[542px] rounded-2xl">
+            <Card className="px-4 py-4 bg-glass w-[542px] rounded-2xl">
               <Typography variant="paragraph" className='font-bold'>Upcoming Events</Typography>
               <ul className="divide-y">
                 {upcomingEvents.map(event => (
@@ -104,6 +104,15 @@ export default function DashboardRoute() {
           </div>
         </div>
       </motion.div>
+      <style jsx>{`
+        .bg-glass {
+          background: rgba(255, 255, 255, 0.2); /* Light white background with transparency */
+          backdrop-filter: blur(10px); /* Blur effect */
+          -webkit-backdrop-filter: blur(10px); /* For Safari */
+          border-radius: 20px; /* Rounded border */
+          border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+        }
+      `}</style>
     </AuroraBackground>
   );
 }

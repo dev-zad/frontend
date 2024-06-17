@@ -11,7 +11,7 @@ export default function PostsRoute() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://abundant-book-1882e0841b.strapiapp.com//api/threads');
+                const response = await fetch('http://127.0.0.1:1337/api/threads');
                 if (!response.ok) {
                     throw new Error('Failed to fetch data');
                 }

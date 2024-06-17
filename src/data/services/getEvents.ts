@@ -4,7 +4,7 @@ import { parseISO, format } from 'date-fns';
 
 export const getEvents = async (): Promise<Event[]> => {
     try {
-        const response = await fetch('https://abundant-book-1882e0841b.strapiapp.com/api/events');
+        const response = await fetch('http://127.0.0.1:1337/api/events');
         const data = await response.json();
 
         return data.data.map((event: any) => ({
