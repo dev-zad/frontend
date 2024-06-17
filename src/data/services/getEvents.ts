@@ -4,7 +4,7 @@ import { parseISO, format } from 'date-fns';
 
 export const getEvents = async (): Promise<Event[]> => {
     try {
-        const response = await fetch('http://127.0.0.1:1337/api/events');
+        const response = await fetch('https://backend-49sv.onrender.com/api/events');
         const data = await response.json();
 
         return data.data.map((event: any) => ({
