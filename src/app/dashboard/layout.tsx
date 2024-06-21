@@ -1,5 +1,8 @@
+import { Typography } from "@/components/Typography";
 import Link from "next/link";
 import { ReactNode } from "react";
+import 'remixicon/fonts/remixicon.css'
+
 
 export default function DashboardLayout({
   children,
@@ -12,15 +15,15 @@ export default function DashboardLayout({
         <div className="flex h-full max-h-screen flex-col gap-2">
           <div className="flex h-[60px] items-center border-b px-6">
             <Link href="/dashboard" className="flex flex-row gap-2">
-              <LayoutDashboardIcon className="h-6 w-6" />
-              <span>Dashboard</span>
+              <i className="ri-dashboard-horizontal-fill flex items-center"></i>
+              <Typography variant="paragraph" className="font-bold flex items-center">Dashboard</Typography>
             </Link>
           </div>
           <div className="flex-1 overflow-auto py-2">
-            <nav className="grid items-start px-4 text-sm font-medium">
+            <nav className="grid items-start px-4 text-md font-medium">
               <Link
                 href="/dashboard/account"
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+                className="flex items-center  gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
               >
                 <UsersIcon className="h-4 w-4" />
                 Account
@@ -29,21 +32,21 @@ export default function DashboardLayout({
                 href="/dashboard/connects"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
               >
-                <UsersIcon className="h-4 w-4" />
+                <i className="ri-links-line"></i>
                 Connects
               </Link>
               <Link
                 href="/dashboard/posts"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
               >
-                <UsersIcon className="h-4 w-4" />
+                <i className="ri-chat-thread-line"></i>
                 Post
               </Link>
               <Link
                 href="/dashboard/events"
                 className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
               >
-                <UsersIcon className="h-4 w-4" />
+                <i className="ri-calendar-event-line"></i>
                 Events
               </Link>
             </nav>

@@ -31,16 +31,15 @@ export const ThreadForm: React.FC<{ className?: string }> = ({ className }) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={cn("space-y-4", className)}>
-      <Input id="title" name="title" placeholder="Title" required />
-      {errors.title && <p>{errors.title.message}</p>}
+      <Input id="title" placeholder="Title" {...register("title", { required: "Title is required" })} />
+      {errors.title && <p className="text-red-600">{errors.title.message}</p>}
       <Textarea
         id="content"
-        name="content"
         placeholder="Write your thread content here..."
         className="resize-none border rounded-md w-full h-[224px] p-2"
-        required
+        {...register("content", { required: "Content is required" })}
       />
-      {errors.content && <p>{errors.content.message}</p>}
+      {errors.content && <p className="text-red-600">{errors.content.message}</p>}
       <div className="flex justify-end">
         <SubmitButton text="Post Thread" loadingText="Posting..." />
       </div>

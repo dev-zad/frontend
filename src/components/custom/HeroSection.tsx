@@ -2,8 +2,12 @@
 import { Typography } from "@/components/Typography";
 import { AuroraBackground } from "../ui/aurora-background";
 import { motion } from 'framer-motion';
+import { useState } from "react";
+import LifeButton from "../ui/lgButton";
+import ProfileFormContent from "@/screens/connects/modal/ProfileFormContent";
 
 export function HeroSection({ data }: { readonly data: any }) {
+  const [isOpen, setIsOpen] = useState(false);
   console.dir(data, { depth: null });
   return (
     <AuroraBackground>
@@ -28,6 +32,10 @@ export function HeroSection({ data }: { readonly data: any }) {
               And we ought to <br className="lg:block hidden " /> lay down our lives for our brothers and sisters.
               <br />- 1 John 3:16 (NIV)
             </Typography>
+            <div className="py-4">
+              <LifeButton label="Get Linked" variant="outline" open={isOpen} setOpen={setIsOpen} />
+              {isOpen && <ProfileFormContent open={isOpen} setOpen={setIsOpen} />}
+            </div>
           </div>
         </div>
         <div className="flex">

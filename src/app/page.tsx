@@ -1,6 +1,8 @@
+"use client";
 import qs from "qs";
 import { HeroSection } from "@/components/custom/HeroSection";
 import { flattenAttributes } from "@/lib/utils";
+import React, { useEffect, useState } from 'react';
 import { FeatureSection } from "@/components/custom/FeaturesSection";
 
 const homePageQuery = qs.stringify({
@@ -19,8 +21,7 @@ const homePageQuery = qs.stringify({
 });
 
 async function getStrapiData(path: string) {
-  const baseUrl = "https://backend-49sv.onrender.com";
-  console.log('baseUrl', baseUrl);
+  const baseUrl = "https://backend-49sv.onrender.com/";
 
   const url = new URL(path, baseUrl);
   url.search = homePageQuery;
@@ -35,16 +36,28 @@ async function getStrapiData(path: string) {
   }
 }
 
-export default async function Home() {
-  const strapiData = await getStrapiData("/api/home-page");
+export default function Home() {
+  const [strapiData, setStrapiData] = useState(null);
 
-  const { title, description, blocks } = strapiData
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getStrapiData("/api/home-page");
+      setStrapiData(data);
+    };
+
+    fetchData();
+  }, []);
+
+  if (!strapiData) {
+    return <div>Loading...</div>; // or your custom loading component
+  }
+
+  const { title, description, blocks } = strapiData;
 
   console.dir(blocks, { depth: null });
 
   return (
     <main>
-
       <HeroSection data={blocks[0]} />
       <FeatureSection data={blocks[0]} />
     </main>

@@ -24,10 +24,10 @@ const truncateMessage = (message: string, maxLength: number) => {
 };
 
 export const columns: ColumnDef<Connected>[] = [
-  {
-    id: "id",
-    accessorKey: "id",
-  },
+  // {
+  //   id: "id",
+  //   accessorKey: "id",
+  // },
   {
     id: "select",
     header: ({ table }) => (
@@ -50,10 +50,10 @@ export const columns: ColumnDef<Connected>[] = [
     enableSorting: false,
     enableHiding: false,
   },
-  {
-    accessorKey: "status",
-    header: "Status",
-  },
+  // {
+  //   accessorKey: "status",
+  //   header: "Status",
+  // },
   {
     accessorKey: "email",
     header: ({ column }) => {

@@ -4,6 +4,7 @@ import { format, startOfMonth, endOfMonth, startOfWeek, endOfWeek, addDays, isSa
 import { Event } from '@/types/event';
 import EventForm from '../forms/EventForm';
 import { Button } from '@/components/ui/button';
+import { Typography } from '../Typography';
 
 interface CalendarProps {
   events: Event[];
@@ -53,11 +54,11 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
     let day = startDate;
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
-        const isPast = isBefore(day, new Date()); // Check if day is before today
+        const isPast = isBefore(day, new Date());
         days.push(
           <div
             key={day.toString()}
-            className={`p-2 border rounded ${isSameMonth(day, currentMonth) ? '' : 'text-gray-400'} hover:bg-gray-100 cursor-pointer`} // Removed h-[100px], added hover:bg-gray-100 and cursor-pointer
+            className={`p-2 border rounded ${isSameMonth(day, currentMonth) ? '' : 'text-gray-400'} hover:bg-gray-100 cursor-pointer`}
           >
             {format(day, 'd')}
             {renderEvents(day)}
@@ -156,9 +157,18 @@ const Calendar: React.FC<CalendarProps> = ({ events }) => {
         <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg max-w-lg w-full ">
             <h2 className="text-lg font-semibold mb-2 ">{selectedEvent.name}</h2>
-            {selectedEvent.time && <p>Time: {selectedEvent.time}</p>}
-            {selectedEvent.location && <p>Location: <span className='underline'>{selectedEvent.location}</span></p>}
-            <p>{selectedEvent.description}</p>
+            <div className='flex flex-col'>
+              {selectedEvent.time &&
+                <Typography variant='paragraph_md'>Time: {selectedEvent.time}</Typography>
+              }
+              {selectedEvent.location &&
+                <Typography variant='paragraph_md'>Location: <span className='underline'>{selectedEvent.location}</span>
+                </Typography>
+              }
+            </div>
+            <div className='px-4 py-4'>
+              <Typography variant='paragraph_md' >{selectedEvent.description}</Typography>
+            </div>
             <div className="mt-4 flex justify-end">
               <Button onClick={handleCloseModal}>Close</Button>
             </div>

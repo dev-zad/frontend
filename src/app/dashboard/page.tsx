@@ -13,6 +13,7 @@ import { Card } from 'antd';
 import ThreadList from '@/components/ThreadList';
 import { Thread } from '@/components/ThreadList';
 import { getThreadsLoader } from '@/data/services/get-threads-loader';
+import LatestYouTubePost from '@/components/custom/LatestYoutubePost';
 
 export default function DashboardRoute() {
   const [tithesData, setTithesData] = useState<{ label: string, date: string, value: number }[]>([]);
@@ -101,6 +102,7 @@ export default function DashboardRoute() {
                 <ThreadList threads={threads} />
               </Card>
             </div>
+            <LatestYouTubePost />
           </div>
         </div>
       </motion.div>

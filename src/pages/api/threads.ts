@@ -1,35 +1,41 @@
-// Example enhanced error handling in /api/threads endpoint
-
 import { NextApiRequest, NextApiResponse } from 'next';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  const { method } = req;
+
+  if (method === 'POST') {
+    const { title, content } = req.body;
+
     try {
-        if (req.method === 'POST') {
-            // Extract data from request body
-            const { title, content } = req.body;
+      const response = await fetch(`${process.env.STRAPI_API_URL}/api/threads`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${process.env.STRAPI_API_TOKEN}`,
+        },
 
-            // Example: Handle database operation or external API call
-            const response = await fetch('https://backend-49sv.onrender.com/api/threads', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ title, content }),
-            });
+        body: JSON.stringify({
+          data: {
+            title,
+            content,
+          },
+        }),
+      });
 
-            if (!response.ok) {
-                throw new Error('Failed to create thread');
-            }
+      const data = await response.json();
 
-            const data = await response.json();
-            return res.status(200).json({ data, message: 'Thread created successfully!' });
-        } else {
-            return res.status(405).json({ message: 'Method not allowed' });
-        }
-    } catch (error: any) {
-        console.error('API request error:', error.message);
-        return res.status(500).json({ message: error.message || 'Internal Server Error' });
+      if (!response.ok) {
+        return res.status(response.status).json(data);
+      }
+
+      return res.status(201).json(data);
+    } catch (error) {
+      console.error('Error creating event:', error);
+      return res.status(500).json({ message: 'Internal Server Error' });
     }
+  } else {
+    return res.status(405).json({ message: 'Method not allowed' });
+  }
 };
 
 export default handler;

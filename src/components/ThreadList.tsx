@@ -9,7 +9,7 @@ export interface Thread {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
-  author: string; // Assuming author is a string based on the provided data structure
+  author: string;
 }
 
 interface ThreadListProps {
@@ -21,8 +21,8 @@ const ThreadList: React.FC<ThreadListProps> = ({ threads }) => {
     <div className="rounded-lg bg-white w-full">
       <ul>
         {threads.map(thread => (
-          <li key={thread.id} className="border-b border-gray-200 flex flex-col">
-            <Typography variant='paragraph' >{thread.title}</Typography>
+          <li key={thread.id} className="border-b border-gray-200 flex flex-col px-20 py-10">
+            <Typography variant='paragraph' >Title: <span>{thread.title}</span></Typography>
             <Typography variant='paragraph_md' >{thread.content}</Typography>
 
             {/* Display author if available */}
