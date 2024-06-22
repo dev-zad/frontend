@@ -4,6 +4,7 @@ import { Logo } from "@/components/custom/Logo";
 import { Button } from "@/components/ui/button";
 import { LogoutButton } from "@/components/custom/LogoutButton";
 import { SummaryForm } from "@/components/forms/SummaryForm";
+import { Separator } from "../ui/separator";
 
 interface AuthUserProps {
   username: string;
@@ -20,6 +21,7 @@ export function LoggedInUser({ userData }: { readonly userData: AuthUserProps })
       >
         {userData.username}
       </Link>
+      <Separator orientation="vertical" className="text-black" />
       <LogoutButton />
     </div>
   );

@@ -21,7 +21,7 @@ const homePageQuery = qs.stringify({
 });
 
 async function getStrapiData(path: string) {
-  const baseUrl = "https://backend-49sv.onrender.com/";
+  const baseUrl = "http://127.0.0.1:1337";
 
   const url = new URL(path, baseUrl);
   url.search = homePageQuery;

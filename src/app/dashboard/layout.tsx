@@ -16,7 +16,7 @@ export default function DashboardLayout({
           <div className="flex h-[60px] items-center border-b px-6">
             <Link href="/dashboard" className="flex flex-row gap-2">
               <i className="ri-dashboard-horizontal-fill flex items-center"></i>
-              <Typography variant="paragraph" className="font-bold flex items-center">Dashboard</Typography>
+              <Typography variant="paragraph" className="font-bold flex items-center text-[#3D3D3D]">Dashboard</Typography>
             </Link>
           </div>
           <div className="flex-1 overflow-auto py-2">
