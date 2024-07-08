@@ -94,3 +94,31 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* customAudioPlayerStyles.css */
+.rhap_container {
+  border-radius: 0.5rem;
+  /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /* Light shadow */
+}
+
+.rhap_main-controls-button,
+.rhap_volume-button {
+  color: #4a5568;
+  /* Custom color for buttons */
+}
+
+.rhap_progress-filled {
+  background-color: #4299e1;
+  /* Custom color for progress bar */
+}
+
+.waveform-container {
+  width: 100%;
+  height: 128px;
+  /* Adjust height as needed */
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}

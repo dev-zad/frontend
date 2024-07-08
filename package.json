@@ -11,6 +11,7 @@
   "dependencies": {
     "@emotion/styled": "^11.11.5",
     "@hookform/resolvers": "^3.6.0",
+    "@kmoz000/react-transcript-editor": "^1.4.7",
     "@langchain/openai": "^0.1.1",
     "@mui/x-charts": "^7.6.2",
     "@radix-ui/react-checkbox": "^1.0.4",
@@ -44,6 +45,7 @@
     "react-date-picker": "^11.0.0",
     "react-day-picker": "^8.10.1",
     "react-dom": "^18",
+    "react-h5-audio-player": "^3.9.1",
     "react-hook-form": "^7.51.5",
     "react-player": "^2.16.0",
     "react-router-dom": "^6.23.1",
@@ -54,6 +56,7 @@
     "tailwindcss-animate": "^1.0.7",
     "use-debounce": "^10.0.1",
     "vaul": "^0.9.1",
+    "wavesurfer.js": "^7.8.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {

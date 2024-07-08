@@ -25,7 +25,7 @@ export default function DashboardLayout({
                 href="/dashboard/account"
                 className="flex items-center  gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
               >
-                <UsersIcon className="h-4 w-4" />
+                <i className="ri-account-circle-line"></i>
                 Account
               </Link>
               <Link
@@ -48,6 +48,13 @@ export default function DashboardLayout({
               >
                 <i className="ri-calendar-event-line"></i>
                 Events
+              </Link>
+              <Link
+                href="/dashboard/record"
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-gray-500 transition-all hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
+              >
+                <i className="ri-folder-music-line"></i>
+                Records
               </Link>
             </nav>
           </div>

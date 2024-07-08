@@ -6,6 +6,7 @@ import { useState } from "react";
 import LifeButton from "../ui/lgButton";
 import ProfileFormContent from "@/screens/connects/modal/ProfileFormContent";
 
+
 export function HeroSection({ data }: { readonly data: any }) {
   const [isOpen, setIsOpen] = useState(false);
   console.dir(data, { depth: null });
@@ -38,7 +39,7 @@ export function HeroSection({ data }: { readonly data: any }) {
             </div>
           </div>
         </div>
-        <div className="flex">
+        <div className="flex flex-col">
           <img className={`px-4`} src="/uploads/hislife.png" alt="Description of the image" /> {/* image */}
         </div>
       </motion.div>

@@ -1,8 +1,8 @@
 "use client";
 import qs from "qs";
-import { HeroSection } from "@/components/custom/HeroSection";
 import { flattenAttributes } from "@/lib/utils";
 import React, { useEffect, useState } from 'react';
+import { HeroSection } from "@/components/custom/HeroSection";
 import { FeatureSection } from "@/components/custom/FeaturesSection";
 
 const homePageQuery = qs.stringify({
@@ -22,17 +22,20 @@ const homePageQuery = qs.stringify({
 
 async function getStrapiData(path: string) {
   const baseUrl = "http://127.0.0.1:1337";
-
   const url = new URL(path, baseUrl);
   url.search = homePageQuery;
 
   try {
     const response = await fetch(url.href);
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
     const data = await response.json();
     const flattenedData = flattenAttributes(data);
     return flattenedData;
   } catch (error) {
-    console.error(error);
+    console.error('Fetching data from Strapi failed, using fallback data.', error);
+    return flattenAttributes(fallbackData);
   }
 }
 
@@ -49,12 +52,14 @@ export default function Home() {
   }, []);
 
   if (!strapiData) {
-    return <div>Loading...</div>; // or your custom loading component
+    return (
+      <main>
+        <HeroSection data={null} /> {/* Render HeroSection with default props */}
+      </main>
+    );
   }
 
   const { title, description, blocks } = strapiData;
-
-  console.dir(blocks, { depth: null });
 
   return (
     <main>
